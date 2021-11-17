@@ -11,10 +11,12 @@
             <p class="text-sm font-weight-bold mb-0">{{item.descripcion}}</p>
         </td>
         <td>
-            <span class="badge badge-sm bg-gradient-success">Activo</span>
+            <span :class="[item.activo ? 'bg-gradient-success': 'bg-gradient-danger', 'badge badge-sm' ]">
+                {{item.activo ? 'Activo': 'Inactivo'}}
+            </span>
         </td>
         <td class="align-middle text-center">
-            <button class="btn btn-icon btn-3 bg-gradient-info" type="button">
+            <button @click="open(item.id)" class="btn btn-icon btn-3 bg-gradient-info" type="button">
                 <span class="btn-inner--icon"><i class="fas fa-edit"></i></span>
                 <span class="btn-inner--text">  Editar</span>
             </button>
@@ -23,10 +25,14 @@
 </template>
 
 <script>
-
 export default {
     name: "Item",
-    props: ['item']
+    props: ['item'],
+    methods:{
+        open(id){
+            this.$emit('openModal', id)
+        }
+    }
 }
 </script>
 

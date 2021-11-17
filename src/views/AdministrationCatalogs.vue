@@ -9,6 +9,7 @@
         <option value="Accion">Acciones</option>
         <option value="Estado">Estados</option>
         <option value="Tipo">Tipo de Memos</option>
+        <option value="Destinatario">Tipo de Destinatario</option>
       </select>
       <hr />
     </div>
