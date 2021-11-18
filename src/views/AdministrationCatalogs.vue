@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="col s12" v-if="dataCatalog.length">
-      <Catalog :data="dataCatalog" :title="catalogoSeleccionado" />
+      <Catalog :data="dataCatalog" :title="catalogoSeleccionado" @update="actualizardata"/>
     </div>
   </div>
 </template>
@@ -30,6 +30,7 @@
   import { ref } from 'vue';
   import getCatalogs from '../composables/getCatalogs'
   export default {
+    emits: ['update'],
     setup() {
       const catalogoSeleccionado = ref('0');
       const { dataCatalog, error, load } = getCatalogs()
@@ -37,10 +38,16 @@
       const changeCatalog = () => {
         load(catalogoSeleccionado.value)
       }
+
+      const actualizardata = () => {
+        load(catalogoSeleccionado.value)
+      }
+
       return {
         catalogoSeleccionado,
         dataCatalog,
-        changeCatalog
+        changeCatalog,
+        actualizardata
       }
     },
     components: {

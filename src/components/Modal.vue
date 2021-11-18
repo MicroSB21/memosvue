@@ -56,7 +56,7 @@
 import {ref} from 'vue'
 export default {
     props:['idItem'],
-    setup(props){
+    setup(props, {emit}){
 
         const actualizado = ref(false);
         
@@ -75,6 +75,7 @@ export default {
 
                 if (request.ok) {
                     actualizado.value = true;
+                    emit('ActualizarDataCatalog', itemActualizado)
                 }
             } catch (error) {
                  console.log(error);
